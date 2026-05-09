@@ -1,0 +1,10 @@
+.active {
+  background: red;
+}
+.flexDemo {
+  display: flex;
+  gap: 20px;
+}
+.flexDemo .item {
+  flex: 1;
+}
