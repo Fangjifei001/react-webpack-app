@@ -1,12 +1,12 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import TabsDemo from './components/Tabs';
+import Home from './components/Home';
 
 export default function App() {
   return (
     <Routes>
-      <Route path="/" element={<TabsDemo />} />
-      <Route path="/about" element={<h1>About Page</h1>} />
+      <Route path="/" element={<Home />} />
+      <Route path="/home" element={<Home />} />
     </Routes>
   );
 }

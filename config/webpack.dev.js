@@ -3,9 +3,13 @@ const common = require('./webpack.common.js');
 
 module.exports = merge(common, {
   mode: 'development',
-  devtool: 'eval-cheap-module-source-map',
+  /**
+   * source-map：生成独立 .map，Chrome 对「映射回 src/*.jsx」兼容性最好（不依赖 eval 内联 map）。
+   * 不要用 eval-cheap-*：cheap 缺列信息，断点易错位。
+   */
+  devtool: 'source-map',
   devServer: {
-    port: 3000,
+    port: process.env.PORT || 3000,
     /**
      * React Router 为什么要 historyApiFallback？
      *
@@ -23,7 +27,7 @@ module.exports = merge(common, {
     rules: [
       {
         test: /\.css$/i,
-        use: ['style-loader', 'css-loader'],
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
       {
         /**
@@ -31,7 +35,7 @@ module.exports = merge(common, {
          * css-loader：把 CSS 插入 DOM
          */
         test: /\.s[ac]ss$/i,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
       },
     ],
   },

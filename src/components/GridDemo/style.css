@@ -1,0 +1,96 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  overflow: hidden;
+  /* 隐藏滚动条，使布局占满视口 */
+}
+
+/* 圣杯布局核心：先写移动端布局（mobile first） */
+.holy-grail {
+  display: grid;
+  grid-template-columns: 1fr;
+  /* 移动端：1列自适应 */
+  grid-template-rows: 80px 1fr 80px;
+  /* 移动端：3行，顶部底部固定，中间自适应 */
+  /* 移动端区域：隐藏左右，只显示顶部、中间、底部 */
+  grid-template-areas:
+    'header'
+    'main'
+    'footer';
+  height: 100%;
+  gap: 10px;
+  padding: 10px;
+}
+
+/* 对应区域名称 */
+header {
+  grid-area: header;
+  background-color: #2c3e50;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav {
+  grid-area: nav;
+  display: none;
+  /* 移动端：隐藏左侧 */
+  background-color: #3498db;
+  color: white;
+  justify-content: center;
+  align-items: center;
+}
+
+main {
+  grid-area: main;
+  background-color: #ecf0f1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+aside {
+  grid-area: aside;
+  display: none;
+  /* 移动端：隐藏右侧 */
+  background-color: #9b59b6;
+  color: white;
+  justify-content: center;
+  align-items: center;
+}
+
+footer {
+  grid-area: footer;
+  background-color: #2c3e50;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* 媒体查询：向上适配桌面端（≥768px），显示左右侧，调整布局 */
+@media (min-width: 768px) {
+  .holy-grail {
+    /* 桌面端：3列，左侧200px，中间自适应，右侧200px */
+    grid-template-columns: 200px 1fr 200px;
+    /* 桌面端：3行，顶部80px，中间自适应，底部80px */
+    grid-template-rows: 80px 1fr 80px;
+    /* 桌面端区域布局 */
+    grid-template-areas:
+      'header header header'
+      'nav main aside'
+      'footer footer footer';
+  }
+
+  /* 桌面端：显示左侧和右侧，并添加flex对齐 */
+  nav,
+  aside {
+    display: flex;
+  }
+}

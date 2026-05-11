@@ -21,7 +21,12 @@ module.exports = {
          *
          * 因为浏览器不支持 JSX 语法和一些现代 JavaScript(ES6+)特性。Babel 可以将这些代码转换成浏览器能够理解的格式。
          */
-        use: 'babel-loader',
+        use: {
+          loader: 'babel-loader',
+          options: {
+            sourceMaps: true,
+          },
+        },
       },
       {
         // 支持图片和字体资源
